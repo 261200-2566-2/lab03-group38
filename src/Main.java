@@ -1,17 +1,31 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.HashMap;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.print("Hello and welcome!");
+        HashMap<Character.PartType,Equipment> equipmentMap = new HashMap<Character.PartType, Equipment>();
+        String swordName = "Player 1 Sword";
+        int swordLevel = 5;
+        int swordWeight = 20;
+        int[] swordStats = {50, 50, 10,10 ,5};
+        Character.PartType swordPartType = Character.PartType.WEAPON;
+        Sword mySword = new Sword(swordName, swordLevel, swordWeight, swordStats,swordPartType);
+        equipmentMap.put(Character.PartType.WEAPON,mySword);
+        Character p1 = new Character(1, 100, 100, 5, 10,5,equipmentMap); // Speed Decrease to 8 After equip weapon
+        System.out.println("Player 1 Hp = " + p1.getHp());
+        System.out.println("Player 1 Mana = " + p1.getMana());
+        System.out.println("Player 1 Attack = " + p1.getAttack());
+        System.out.println("Player 1 Def = " + p1.getDef());
+        System.out.println("Player 1 Exp = " + p1.getExp());
+        System.out.println("Player 1 RunSpeed = " + p1.getRunSpeed());
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        Character p2 = new Character(1, 100, 100, 5, 10,5,equipmentMap);
+        p2.attack(p1);
+        System.out.println("Player 1 Hp after attacked by p2 = " + p1.getHp());
+        p1.upgrade(Character.PartType.WEAPON);
+        System.out.println("Upgrade sword to level " + mySword.getLevel());
+        p1.attack(p2);
+        System.out.println("Player 1 Hp after attacked by p2 = " + p2.getHp());
+
     }
 }
